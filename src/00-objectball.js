@@ -141,3 +141,62 @@ function shoeSize(name) {
         }
         }
     }
+
+function teamColors(team) {
+    const game = gameObject();
+    for (const teamKey in game) {
+        if (game[teamKey]["teamName"] === team) {
+            return game[teamKey]["colors"];
+        }
+    }
+}
+
+function teamNames() {
+    const game = gameObject();
+    const teams = [];
+    for (const teamKey in game) {
+        teams.push(game[teamKey].teamName);
+    }
+    return teams;
+}
+
+function playerNumbers(team) {
+    const game = gameObject();
+    const teamJerseyNumbers = [];
+    for (const teamKey in game) {
+        if (game[teamKey].teamName === team) {
+            const rosterObj = game[teamKey].players;
+            for (const player in rosterObj) {
+                teamJerseyNumbers.push(rosterObj[player].number);
+            }
+        }
+    }
+    return teamJerseyNumbers;
+}
+
+function playerStats(name) {
+    const game = gameObject();
+    for (const teamKey in game) {
+        const playersObj = game[teamKey]["players"];
+        for (const playerKey in playersObj) {
+            if (playerKey === name) {
+                const playerStats = playersObj[playerKey];
+                return playerStats;
+            }
+        }
+    }
+}
+
+function bigShoeRebounds() {
+    const game = gameObject();
+    let biggestShoe = game.home.players["Alan Anderson"];
+    for (const teamKey in game) {
+        const roster = game[teamKey].players;
+        for (const player in roster) {
+            if (roster[player].shoe > biggestShoe.shoe) {
+                biggestShoe = roster[player];
+            }
+        }
+    }
+    return biggestShoe.rebounds;
+}
