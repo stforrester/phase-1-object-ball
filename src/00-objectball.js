@@ -72,7 +72,7 @@ function gameObject() {
                 },
                 "Bismak Biyombo": {
                     number: 0,
-                    shoe: 6,
+                    shoe: 16,
                     points: 12,
                     rebounds: 4,
                     assists: 7,
@@ -105,7 +105,7 @@ function gameObject() {
                     shoe: 15,
                     points: 6,
                     rebounds: 12,
-                    assists: 112,
+                    assists: 12,
                     steals: 22,
                     blocks: 5,
                     slamDunks: 12
@@ -116,18 +116,28 @@ function gameObject() {
     return teamsObj;
 }
 
-/*function homeTeamName() {
-    let object = gameObject();
-    return object.home.teamName;
-}
+function numPointsScored(name) {
+    const game = gameObject();
+    for (const teamKey in game) {
+        const playersObj = game[teamKey]["players"];
+        for (const playerKey in playersObj) {
+            if (playerKey === name) {
+                const playerStats = playersObj[playerKey];
+                return playerStats.points;
+            }
+        }
+        }
+    }
 
-function awayTeamName() {
-    let object = gameObject();
-    return object.away.teamName;
-}
-function numPointsScored(player){
-return object.home.points;
-
-}
-console.log(homeTeamName());
-console.log(awayTeamName());*/
+function shoeSize(name) {
+    const game = gameObject();
+    for (const teamKey in game) {
+        const playersObj = game[teamKey]["players"];
+        for (const playerKey in playersObj) {
+            if (playerKey === name) {
+                const playerStats = playersObj[playerKey];
+                return playerStats.shoe;
+            }
+        }
+        }
+    }
